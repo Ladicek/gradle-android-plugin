@@ -7,6 +7,7 @@ import org.gradle.api.logging.LogLevel
 import org.gradle.api.plugins.JavaPlugin
 
 import com.jvoegele.gradle.enhancements.JavadocEnhancement
+import com.jvoegele.gradle.tasks.android.Adb
 import com.jvoegele.gradle.tasks.android.AdbExec
 import com.jvoegele.gradle.tasks.android.AndroidPackageTask
 import com.jvoegele.gradle.tasks.android.ProGuard
@@ -114,6 +115,8 @@ class AndroidPlugin implements Plugin<Project> {
     ant.xpath(input: androidConvention.androidManifest, expression: "/manifest/@package", output: "manifest.package")
     ant.xpath(input: androidConvention.androidManifest, expression: "/manifest/application/@android:hasCode",
               output: "manifest.hasCode", 'default': "true")
+
+    Adb.init(project, sdkDir)
   }
 
   private void defineTasks() {

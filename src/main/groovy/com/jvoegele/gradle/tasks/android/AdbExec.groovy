@@ -6,15 +6,16 @@ import org.gradle.api.tasks.Exec
 import org.gradle.api.tasks.TaskAction
 
 class AdbExec extends DefaultTask {
+  def device
   def exec = new Exec()
   def stdout = new ByteArrayOutputStream() // output is small, we can safely read it into memory
   def stderr = new ByteArrayOutputStream() // adb prints error messages both on stdout and stderr
 
   def AdbExec() {
+    device = Device.find()
+
     exec.executable project.ant['adb']
-    if (project.ant['adb.device.arg']) {
-      exec.args project.ant['adb.device.arg'].split(" ")
-    }
+    exec.args device.argsForAdb
 
     // both stdout and stderr should be logged AND inspected for error messages at the same time
     exec.standardOutput = new TeeOutputStream(System.out, stdout)
@@ -25,6 +26,8 @@ class AdbExec extends DefaultTask {
 
   @TaskAction
   def exec() {
+    device.assertConnected()
+
     project.logger.info("running '${exec.commandLine.join(" ")}'")
 
     exec.exec()
@@ -41,7 +44,7 @@ class AdbExec extends DefaultTask {
     def reader = new InputStreamReader(new ByteArrayInputStream(stream.toByteArray()))
     reader.eachLine {
       if (it.toLowerCase().contains("failure") || it.toLowerCase().contains("error")) {
-        throw new AdbErrorException(it.trim())
+        throw new AdbErrorException("ADB said '${it.trim()}'")
       }
     }
   }
