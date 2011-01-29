@@ -1,4 +1,4 @@
-package com.jvoegele.gradle.tasks.android
+package com.jvoegele.gradle.tasks.android.adb
 
 import org.apache.tools.ant.util.TeeOutputStream
 import org.gradle.api.DefaultTask

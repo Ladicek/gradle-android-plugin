@@ -1,4 +1,4 @@
-package com.jvoegele.gradle.tasks.android
+package com.jvoegele.gradle.tasks.android.adb
 
 class Adb {
   static def instance

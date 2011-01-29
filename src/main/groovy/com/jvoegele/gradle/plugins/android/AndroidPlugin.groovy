@@ -7,8 +7,8 @@ import org.gradle.api.logging.LogLevel
 import org.gradle.api.plugins.JavaPlugin
 
 import com.jvoegele.gradle.enhancements.JavadocEnhancement
-import com.jvoegele.gradle.tasks.android.Adb
-import com.jvoegele.gradle.tasks.android.AdbExec
+import com.jvoegele.gradle.tasks.android.adb.Adb
+import com.jvoegele.gradle.tasks.android.adb.AdbExec
 import com.jvoegele.gradle.tasks.android.AndroidPackageTask
 import com.jvoegele.gradle.tasks.android.ProGuard
 import com.jvoegele.gradle.tasks.android.ProcessAndroidResources
