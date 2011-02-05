@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <title>package com.jvoegele.gradle.tasks.android.adb</title>
+</head>
+<body>
+
+<p>This package contains everything needed to work with ADB. Everything in this package is public except of the
+    <code>Adb</code> class.</p>
+
+<h2>Public API</h2>
+
+<ul>
+    <li><code>ConnectedDevices</code> provides a way to enumerate all connected Android devices.</li>
+    <li><code>Device</code> contains relevant informations about an Android device (its serial number and wheter it is
+        an emulator or not). <code>ConnectedDevices</code> returns a <code>List</code> of these.</li>
+    <li><code>AdbExec</code> is a Gradle task that allows to run <code>adb</code> command with user-defined parameters.
+        Note that the device parameter (<code>-d</code>, <code>-e</code> or <code>-s</code>) should <strong>not</strong>
+        be specified. If you want to specify a particular device, <code>AdbExec</code> has a <code>device</code>
+        property for that. See also <em>Specifying a device</em> below.</li>
+    <li><code>SelectedDevice</code> is only used by <code>AdbExec</code>. It isn't useful for users.</li>
+</ul>
+
+<h2>Specifying a device</h2>
+
+<p><code>AdbExec</code> tasks reads a device from (in order of evaluation):</p>
+
+<ul>
+    <li><code>device</code> system property (<code>-Ddevice=...</code>).</li>
+    <li><code>adb.device.arg</code> system property (<code>-Dadb.device.arg=...</code>). This is deprecated.</li>
+    <li><code>device</code> property of itself.</li>
+</ul>
+
+<p>Value of the <code>device</code> system property and the <code>device</code> property of <code>AdbExec</code> task
+    can be:</p>
+
+<ul>
+    <li><code>emulator</code>: the single connected emulator. It is an error if no emulator or 2 or more emulators are
+        connected.</li>
+    <li><code>usb</code>: the single USB connected device. It is an error if no device or 2 or more devices are
+        connected.</li>
+    <li><code>&lt;serial number&gt;</code>: any other string, which is considered to be a serial number. It is an error
+        if no device with such serial number is connected.</li>
+</ul>
+
+<h2><code>Adb</code> class</h2>
+
+<p>Direct calls to <code>Adb</code> class are limited (on purpose):</p>
+
+<ul>
+    <li><code>AndroidPlugin</code> calls <code>Adb.init</code></li>
+    <li><code>ConnectedDevices</code> calls <code>Adb.devices</code></li>
+</ul>
+
+<p>It could be reimplemented by e.g. parsing <code>adb devices</code> output and only direct callers would have to be
+    changed. Thus the public API of this package should be pretty solid.</p>
+
+</body>
+</html>

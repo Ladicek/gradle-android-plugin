@@ -1,6 +1,6 @@
 package com.jvoegele.gradle.tasks.android.adb
 
-class Adb {
+final class Adb {
   static def instance
 
   static def init(project, sdkDir) {
