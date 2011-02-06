@@ -29,6 +29,9 @@ dependencies {
     // Add all JAR files in the lib directory of theGradle installation directory
     // to the groovy configuration (is also used by compile configuration)
     groovy fileTree(dir: new File(gradle.gradleHomeDir, 'lib'), includes: ['**/*.jar'])
+
+    testCompile 'junit:junit:4.8.2',
+                'org.gmock:gmock:0.8.1'
 }
 
 // Make sure all code is compiled, tested and checked before uploadArchives.
