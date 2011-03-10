@@ -11,9 +11,9 @@
 <h2>Public API</h2>
 
 <ul>
-    <li><code>ConnectedDevices</code> provides a way to enumerate all connected Android devices.</li>
-    <li><code>Device</code> contains relevant informations about an Android device (its serial number and wheter it is
-        an emulator or not). <code>ConnectedDevices</code> returns a <code>List</code> of these.</li>
+    <li><code>ConnectedDevice</code> contains relevant informations about a connected Android device (its serial number
+        and wheter it is an emulator or not). Static method <code>getAll</code> enumerates all connected devices;
+        it returns <code>List&lt;ConnectedDevice&gt;</code>.</li>
     <li><code>AdbExec</code> is a Gradle task that allows to run <code>adb</code> command with user-defined parameters.
         Note that the device parameter (<code>-d</code>, <code>-e</code> or <code>-s</code>) should <strong>not</strong>
         be specified. If you want to specify a particular device, <code>AdbExec</code> has a <code>device</code>
@@ -49,7 +49,7 @@
 
 <ul>
     <li><code>AndroidPlugin</code> calls <code>Adb.init</code></li>
-    <li><code>ConnectedDevices</code> calls <code>Adb.devices</code></li>
+    <li><code>ConnectedDevice.getAll</code> calls <code>Adb.devices</code></li>
 </ul>
 
 <p>It could be reimplemented by e.g. parsing <code>adb devices</code> output and only direct callers would have to be

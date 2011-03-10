@@ -77,7 +77,7 @@ final class SelectedDevice {
   }
 
   def assertSingleDeviceConnected() {
-    def devicesCount = ConnectedDevices.get().size()
+    def devicesCount = ConnectedDevice.getAll().size()
 
     if (devicesCount == 0) {
       throw new AdbErrorException("There is no connected device")
@@ -87,7 +87,7 @@ final class SelectedDevice {
   }
 
   def assertSingleEmulatorConnected() {
-    def emulatorsCount = ConnectedDevices.get().findAll { it.isEmulator }.size()
+    def emulatorsCount = ConnectedDevice.getAll().findAll { it.isEmulator }.size()
 
     if (emulatorsCount == 0) {
       throw new AdbErrorException("There is no connected emulator")
@@ -97,7 +97,7 @@ final class SelectedDevice {
   }
 
   def assertSingleUsbConnected() {
-    def usbDevicesCount = ConnectedDevices.get().findAll { !it.isEmulator }.size()
+    def usbDevicesCount = ConnectedDevice.getAll().findAll { !it.isEmulator }.size()
 
     if (usbDevicesCount == 0) {
       throw new AdbErrorException("There is no connected USB device")
@@ -107,7 +107,7 @@ final class SelectedDevice {
   }
 
   def assertSerialNumberConnected() {
-    def serialNumberDevices = ConnectedDevices.get().findAll { it.serialNumber == serialNumber }.size()
+    def serialNumberDevices = ConnectedDevice.getAll().findAll { it.serialNumber == serialNumber }.size()
 
     if (serialNumberDevices == 0) {
       throw new AdbErrorException("There is no connected device with serial number '${serialNumber}'")
