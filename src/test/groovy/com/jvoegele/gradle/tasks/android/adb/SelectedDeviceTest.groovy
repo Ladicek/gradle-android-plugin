@@ -89,10 +89,10 @@ class SelectedDeviceTest {
     mockSystem.static.getProperty("device").returns(null).stub()
     mockSystem.static.getProperty("adb.device.arg").returns(null).stub()
 
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(true, "emulator-nnnn")])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(false, "realdevice-nnnn")])
-    mockConnectedDevice.static.getAll().returns([])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(true, "emulator-nnnn"), new ConnectedDevice(false, "realdevice-nnnn")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(true, "emulator-nnnn")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(false, "realdevice-nnnn")])
+    mockConnectedDevice.static.all.returns([])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(true, "emulator-nnnn"), new ConnectedDevice(false, "realdevice-nnnn")])
 
     play {
       2.times {
@@ -111,11 +111,11 @@ class SelectedDeviceTest {
 
     mockSystem.static.getProperty("device").returns("emulator").stub()
 
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(true, "emulator-nnnn")])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(true, "emulator-nnnn"), new ConnectedDevice(false, "realdevice-nnnn")])
-    mockConnectedDevice.static.getAll().returns([])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(true, "emulator-nnnn"), new ConnectedDevice(true, "emulator-qqqq")])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(false, "realdevice-nnnn")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(true, "emulator-nnnn")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(true, "emulator-nnnn"), new ConnectedDevice(false, "realdevice-nnnn")])
+    mockConnectedDevice.static.all.returns([])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(true, "emulator-nnnn"), new ConnectedDevice(true, "emulator-qqqq")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(false, "realdevice-nnnn")])
 
     play {
       2.times {
@@ -134,11 +134,11 @@ class SelectedDeviceTest {
 
     mockSystem.static.getProperty("device").returns("usb").stub()
 
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(false, "realdevice-nnnn")])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(true, "emulator-nnnn"), new ConnectedDevice(false, "realdevice-nnnn")])
-    mockConnectedDevice.static.getAll().returns([])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(false, "realdevice-nnnn"), new ConnectedDevice(false, "realdevice-qqqq")])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(true, "emulator-nnnn")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(false, "realdevice-nnnn")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(true, "emulator-nnnn"), new ConnectedDevice(false, "realdevice-nnnn")])
+    mockConnectedDevice.static.all.returns([])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(false, "realdevice-nnnn"), new ConnectedDevice(false, "realdevice-qqqq")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(true, "emulator-nnnn")])
 
     play {
       2.times {
@@ -157,11 +157,11 @@ class SelectedDeviceTest {
 
     mockSystem.static.getProperty("device").returns("12345").stub()
 
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(false, "12345")])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(false, "12345"), new ConnectedDevice(true, "emulator-nnnn"), new ConnectedDevice(false, "realdevice-nnnn")])
-    mockConnectedDevice.static.getAll().returns([])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(false, "realdevice-nnnn"), new ConnectedDevice(false, "realdevice-qqqq")])
-    mockConnectedDevice.static.getAll().returns([new ConnectedDevice(true, "emulator-nnnn")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(false, "12345")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(false, "12345"), new ConnectedDevice(true, "emulator-nnnn"), new ConnectedDevice(false, "realdevice-nnnn")])
+    mockConnectedDevice.static.all.returns([])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(false, "realdevice-nnnn"), new ConnectedDevice(false, "realdevice-qqqq")])
+    mockConnectedDevice.static.all.returns([new ConnectedDevice(true, "emulator-nnnn")])
 
     play {
       2.times {
